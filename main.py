@@ -88,7 +88,13 @@ while answer!= "0":
             departure = input("Time of Departure: ")
             adress = input("Adress ")
             type = input("Going or Return: ")
-            trip = Trip(vehicle, departure,adress,type)
+            try:
+                trip = Trip(vehicle, departure,adress,type)
+            except:
+                print("Put a integer number")
+                number_of_seats = input("The number of seats available: ")
+                vehicle = Vehicle(car_registration, number_of_student,description_of_the_car,number_of_seats)
+                trip = Trip(vehicle, departure,adress,type)
             try:
                trip.get_datetime()
             except:
@@ -97,6 +103,7 @@ while answer!= "0":
                 trip = Trip(vehicle, departure,adress,type) 
                 trip.get_datetime()          
             manager.add_trip(trip)
+            manager.add_vehicle(vehicle)
             vehicle.add_new_trip()
 
     elif answer == "6":
